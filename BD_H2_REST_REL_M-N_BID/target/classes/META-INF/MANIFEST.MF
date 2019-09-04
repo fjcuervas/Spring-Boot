@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: BD_H2_REST_REL_M-N_BID
+Implementation-Version: 0.1.0
+Built-By: jcuervas
+Implementation-Vendor-Id: es.urjc.code
+Build-Jdk: 1.8.0_221
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

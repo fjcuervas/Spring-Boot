@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${titulo}"></h1>
+	<form action="">
+		<span>ID Perfil</span><input type="text" name="perfil_id" th:if="${perfil}" th:value="${perfil.perfilId}"/>
+		<span>Tipo Perfil</span><input type="text" name="tipo_perfil" th:if="${perfil}" th:value="${perfil.tipoPerfil}"/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p th:text="'Listado de usuario'"/>
+		<table>
+			<thead>
+				<tr>
+					<th >ID Usuario</th>
+					<th >ID Perfil</th>
+					<th >DNI</th>
+					<th >Nombre</th>
+					<th >Fecha alta</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="us : ${usuarios}">
+					<td th:text="${{us.usuarioId}}"></td>
+					<td th:text="${{us.perfilId}}"></td>
+					<td th:text="${{us.dni}}"></td>
+					<td th:text="${{us.nombreUsuario}}"></td>
+					<td th:text="${{us.fechaAlta}}"></td>
+
+				</tr>
+			</tbody>
+		</table>
+</body>
+</html>

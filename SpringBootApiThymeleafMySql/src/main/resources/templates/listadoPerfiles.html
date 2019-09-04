@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${titulo}"></h1>
+	<table th:if="${!perfiles.isEmpty()}">
+	<thead>
+		<th>ID PERFIL</th>
+		<th>TIPO PERFIL</th>
+	</thead>
+	<tbody>
+		<tr th:each="perfil : ${perfiles}">
+			<td th:text="${perfil.perfilId}"></td>
+			<td th:text="${perfil.tipoPerfil}"></td>
+		</tr>
+	</tbody>
+	</table>
+</body>
+</html>
