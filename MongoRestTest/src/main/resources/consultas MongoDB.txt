@@ -1,0 +1,86 @@
+
+
+
+use micollection
+
+db.dropDatabase()
+
+show dbs
+
+show collections
+
+db.restaurant.renameCollection("cambionombre")
+
+db.restaurant.drop()
+
+db.restaurant.insertMany([
+{ "_id" : 1, "name" : "Central Perk Cafe", "violations" : 3 },
+{ "_id" : 2, "name" : "Rock A Feller Bar and Grill", "violations" : 2 },
+{ "_id" : 3, "name" : "Empire State Sub", "violations" : 5 },
+{ "_id" : 4, "name" : "Pizza Rat's Pizzaria", "violations" : 8 }
+])
+
+db.restaurant.find( { name: { $regex: /Ro/} } )
+
+p.find({$where : "this.precio / 2 < 30 && this.nombre == 'teclado'"})
+
+p.find({precio : {$exists: true, $lt : 100}, $or :[{id : 2}] })
+
+p.find().sort({nombre:1})
+
+p.update({id:2},{$set:{cosas:[{cosa1:3},{cosa2:4}]}})
+
+db.createView("mivista","productos",[{$project:{nombre:1,"cosa1":"$cosas.cosa1"}}] )
+
+db.restaurant.remove({ _id : {$lt : 5}, violations : 5 })
+
+db.restaurant.find().pretty()
+
+try {
+   db.restaurant.updateMany(
+      { violations: { $gt: 4 } },
+      { $set: { "Review" : true } }
+   );
+} catch (e) {
+   print(e);
+}
+
+db.members.insertMany([
+   { "_id" : 1, "member" : "abc123", "status" : "A", "points" : 2, "misc1" : "note to self: confirm status", "misc2" : "Need to activate" },
+   { "_id" : 2, "member" : "xyz123", "status" : "A", "points" : 60, "misc1" : "reminder: ping me at 100pts", "misc2" : "Some random comment" }
+])
+
+
+db.members.updateMany(
+   { },
+   [
+      { $set: { status: "Modified", comments: [ "$misc1", "$misc2" ] } },
+      { $unset: [ "misc1", "misc2" ] }
+   ]
+)
+
+
+db.students3.insert([
+   { "_id" : 1, "tests" : [ 95, 92, 90 ] },
+   { "_id" : 2, "tests" : [ 94, 88, 90 ] },
+   { "_id" : 3, "tests" : [ 70, 75, 82 ] }
+]);
+
+
+
+db.students3.updateMany(
+   { },
+   [
+     { $set: { average : { $avg: "$tests" } } },
+     { $set: { grade: { $switch: {
+                           branches: [
+                               { case: { $gte: [ "$average", 90 ] }, then: "A" },
+                               { case: { $gte: [ "$average", 80 ] }, then: "B" },
+                               { case: { $gte: [ "$average", 70 ] }, then: "C" },
+                               { case: { $gte: [ "$average", 60 ] }, then: "D" }
+                           ],
+                           default: "F"
+     } } } }
+   ]
+)
+
